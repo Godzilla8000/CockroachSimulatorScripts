@@ -1,0 +1,46 @@
+public class spawnerScript : MonoBehaviour
+{
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3;
+    public float spawnInterval = 20f;
+    private float currentTime;
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentTime = 0f;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        currentTime += Time.deltaTime;
+        if(currentTime >= spawnInterval)
+        {
+            Spawn();
+            currentTime = 0f;
+        }
+        
+    }
+
+    void Spawn()
+    {
+    int en = Random.Range(1, 4);
+    int enx = Random.Range(-7, 7);
+    int eny = Random.Range(-3, 3);
+
+        switch (en)
+        {
+            case 1:
+                Instantiate(enemy1, new Vector3(enx,eny,0), transform.rotation);
+            break;
+            case 2:
+                Instantiate(enemy2, new Vector3(enx, eny, 0), transform.rotation);
+            break;
+            case 3:
+                Instantiate(enemy3, new Vector3(enx, eny, 0), transform.rotation);
+           break;
+        }
+    }
+}
